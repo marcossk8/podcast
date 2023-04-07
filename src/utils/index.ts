@@ -1,0 +1,1 @@
+export { itPassedADay } from "./itPassedADay";
