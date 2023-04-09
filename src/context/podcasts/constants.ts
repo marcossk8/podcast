@@ -1,0 +1,1 @@
+export const GET_PODCASTS = 'GET_PODCASTS';

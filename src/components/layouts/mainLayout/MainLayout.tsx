@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavBar } from '../../components';
+import { NavBar } from '../../';
+import './mainLayout.css';
 
 interface Props {
     children: JSX.Element | JSX.Element[];
@@ -7,10 +8,11 @@ interface Props {
 
 export const MainLayout: React.FC<Props> = ({ children }) => {
     return (
-        <div>
+        <>
             <NavBar />
-
-            {children}
-        </div>
+            <div className="container-layout-children">
+                {children}
+            </div>
+        </>
     )
 }

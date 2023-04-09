@@ -1,0 +1,17 @@
+.container-results-not-found {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon-search-results-not-found {
+    color: var(--grey-color);
+}
+
+.text-results-not-found {
+    color: var(--grey-color);
+}

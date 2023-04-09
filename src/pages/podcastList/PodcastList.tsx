@@ -1,35 +1,44 @@
-import { useEffect, useState } from 'react';
-import { MainLayout } from '../../layouts';
+import { useEffect, useContext } from 'react';
+import { PodcastsContext } from '../../context';
+import { MainLayout } from '../../components/layouts';
 import { itunesAppleApi } from '../../api';
-import { itPassedADay } from '../../utils';
-import { Podcast, PodcastsResponse } from '../../interfaces';
+import { getLocalPodcastList, itPassedADay } from '../../utils';
+import { PodcastsResponse } from '../../interfaces';
+import { FiltersHeader, PodcastCard, ResultsNotFound } from '../../components';
+import { Box } from '@mui/material';
 
 export const PodcastList = () => {
-    const localDataPodcast = localStorage.getItem('podcastList')
-    const list = localDataPodcast ? JSON.parse(localDataPodcast) : []
-    const [podcastList, setPodcastList] = useState<Podcast[]>(list)
-    
+    const { podcastsList, isLoading, getPodcasts } = useContext(PodcastsContext)
+
     useEffect(() => {
         const timeGetPodcastList = localStorage.getItem('timeGetPodcastList')
-        
-        if(itPassedADay(timeGetPodcastList)) {
+
+        if (itPassedADay(timeGetPodcastList)) {
             getTopPodcasts()
+        } else {
+            getPodcasts(getLocalPodcastList())
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
+
     const getTopPodcasts = async () => {
         try {
-            const { data } = await itunesAppleApi.get<PodcastsResponse>("/us/rss/toppodcasts/limit=100/genre=1310/json")
-            
+            const { data } = await itunesAppleApi.get<PodcastsResponse>(
+                '/us/rss/toppodcasts/limit=100/genre=1310/json'
+            )
+
             const entry = data?.feed?.entry
-            if(!entry) {
+            if (!entry) {
                 throw Error('No existe un campo llamado entry.')
             }
-            
-            setPodcastList(entry)
-            const date = new Date();
-            localStorage.setItem('timeGetPodcastList', JSON.stringify(date.getTime()));
-            localStorage.setItem('podcastList', JSON.stringify(entry));
+
+            getPodcasts(entry)
+            const date = new Date()
+            localStorage.setItem(
+                'timeGetPodcastList',
+                JSON.stringify(date.getTime())
+            )
+            localStorage.setItem('podcastList', JSON.stringify(entry))
         } catch (error) {
             console.error(error)
         }
@@ -37,13 +46,34 @@ export const PodcastList = () => {
 
     return (
         <MainLayout>
-            <>
-                {podcastList.map((podcast) => (
-                    <div key={podcast.id.attributes['im:id']}>
-                        <p>{podcast.title.label}</p>
-                    </div>
-                ))}
-            </>
+            <FiltersHeader />
+            {podcastsList?.length ? (
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gridTemplateColumns: {
+                            xs: 'repeat(1, 1fr)',
+                            sm: 'repeat(3, 1fr)',
+                            md: 'repeat(4, 1fr)',
+                        },
+                        gap: 2,
+                        marginTop: 3,
+                    }}
+                >
+                    {podcastsList.map((podcast) => (
+                        <PodcastCard
+                            key={podcast.id.attributes['im:id']}
+                            images={podcast['im:image']}
+                            name={podcast['im:name'].label}
+                            author={podcast['im:artist'].label}
+                        />
+                    ))}
+                </Box>
+            ) : (
+                <>
+                    {!isLoading && <ResultsNotFound />}
+                </>
+            )}
         </MainLayout>
     )
 }

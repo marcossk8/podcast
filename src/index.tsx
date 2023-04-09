@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { PodcastsProvider } from './context';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
 import { PodcastList, PodcastDetail, PodcastDetailEpisode, ErrorPage } from './pages';
+import reportWebVitals from './reportWebVitals';
 import './index.css';
 
 const root = ReactDOM.createRoot(
@@ -27,7 +28,9 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PodcastsProvider>
+      <RouterProvider router={router} />
+    </PodcastsProvider>
   </React.StrictMode>
 );
 

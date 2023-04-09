@@ -1,0 +1,1 @@
+export const imageNotFound = 'https://i.ibb.co/GJ7zjrJ/image-not-found.png';
