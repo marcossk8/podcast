@@ -27,7 +27,7 @@ export const TextFieldSearch = ({
     sx
 }: Props) => {
 
-    const { podcastsList, getPodcasts } = useContext(PodcastsContext)
+    const { getPodcasts } = useContext(PodcastsContext)
     const localPodcastList:Podcast[] = getLocalPodcastList()
 
     const handleChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
