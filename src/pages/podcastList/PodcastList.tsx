@@ -11,9 +11,9 @@ export const PodcastList = () => {
     const { podcastsList, isLoading, getPodcasts } = useContext(PodcastsContext)
 
     useEffect(() => {
-        const timeGetPodcastList = localStorage.getItem('timeGetPodcastList')
+        const podcastsUpdateAt = localStorage.getItem('podcastsUpdateAt')
 
-        if (itPassedADay(timeGetPodcastList)) {
+        if (itPassedADay(podcastsUpdateAt)) {
             getTopPodcasts()
         } else {
             getPodcasts(getLocalPodcastList())
@@ -29,13 +29,13 @@ export const PodcastList = () => {
 
             const entry = data?.feed?.entry
             if (!entry) {
-                throw Error('No existe un campo llamado entry.')
+                throw Error('The field named "entry" does not exist.')
             }
 
             getPodcasts(entry)
             const date = new Date()
             localStorage.setItem(
-                'timeGetPodcastList',
+                'podcastsUpdateAt',
                 JSON.stringify(date.getTime())
             )
             localStorage.setItem('podcastList', JSON.stringify(entry))
@@ -66,6 +66,7 @@ export const PodcastList = () => {
                             images={podcast['im:image']}
                             name={podcast['im:name'].label}
                             author={podcast['im:artist'].label}
+                            podcastId={podcast.id.attributes['im:id']}
                         />
                     ))}
                 </Box>

@@ -1,11 +1,16 @@
-import { Podcast } from '../../interfaces';
-import { PodcastsState } from './PodcastsProvider';
-import { GET_PODCASTS } from './constants';
+import { Podcast } from '../../interfaces'
+import { PodcastsState } from './PodcastsProvider'
+import { GET_PODCASTS, ON_LOAD } from './constants'
 
-type PodcastsAction = {
-    type: 'GET_PODCASTS'
-    payload: Podcast[]
-}
+type PodcastsAction =
+    | {
+          type: 'GET_PODCASTS'
+          payload: Podcast[]
+      }
+    | {
+          type: 'ON_LOAD'
+          payload: boolean
+      }
 
 export const podcastsReducer = (
     state: PodcastsState,
@@ -17,6 +22,12 @@ export const podcastsReducer = (
                 ...state,
                 isLoading: false,
                 podcastsList: action.payload,
+            }
+
+        case ON_LOAD:
+            return {
+                ...state,
+                isLoading: action.payload,
             }
 
         default:

@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import { Podcast } from '../../interfaces';
 import { PodcastsContext } from './PodcastsContext';
 import { podcastsReducer } from './podcastsReducer';
-import { GET_PODCASTS } from './constants';
+import { GET_PODCASTS, ON_LOAD } from './constants';
 
 export interface PodcastsState {
     isLoading: boolean;
@@ -25,6 +25,10 @@ export const PodcastsProvider = ({ children }: Props) => {
         dispatch({ type: GET_PODCASTS, payload: podcasts })
     }
 
+    const onLoad = (load:boolean) => {
+        dispatch({ type: ON_LOAD, payload: load })
+    }
+
     return (
         <PodcastsContext.Provider
             value={{
@@ -32,6 +36,7 @@ export const PodcastsProvider = ({ children }: Props) => {
 
                 //Methods
                 getPodcasts,
+                onLoad
             }}
         >
             {children}
