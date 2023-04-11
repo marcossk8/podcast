@@ -6,3 +6,5 @@ export { ResultsNotFound } from './resultsNotFound/ResultsNotFound';
 export { PodcastCardDetail } from './podcastCardDetail/PodcastCardDetail';
 export { PodcastEpisodeList } from './podcastEpisodeList/PodcastEpisodeList';
 export { TitleTableHead } from './titleTableHead/TitleTableHead';
+export { PodcastCardEpisode } from './podcastCardEpisode/PodcastCardEpisode';
+export { ScrollToTop } from './scrollToTop/ScrollToTop';

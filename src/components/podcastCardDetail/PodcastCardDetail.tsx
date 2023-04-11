@@ -18,7 +18,20 @@ export const PodcastCardDetail = ({ podcastId }: Props) => {
     if (!podcastDetail) return <span>Error</span>
 
     return (
-        <Card raised elevation={2} className="container-card-detail">
+        <Card
+            raised
+            elevation={2}
+            sx={{
+                width: {
+                    xs: '100%',
+                    sm: 300,
+                    md: 300,
+                },
+                marginBottom: {
+                    xs: 1,
+                }
+            }}
+        >
             <PodcastCardMedia
                 images={podcastDetail['im:image']}
                 name={podcastDetail['im:name'].label}

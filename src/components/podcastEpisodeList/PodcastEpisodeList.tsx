@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { itunesAppleApi } from '../../api';
-import { itPassedADay } from '../../utils';
+import { getLocalPodcastEpisodes, itPassedADay } from '../../utils';
 import {
     Box,
     Paper,
@@ -15,8 +15,8 @@ import { PodcastEpisodeTableBody, PodcastEpisodeTableHead } from './';
 import { TableColumns } from '../../interfaces';
 import { Episode, EpisodesResponse } from '../../interfaces/episodes';
 import { TitleTableHead } from '../';
-import './podcastEpisodeList.css';
 import { PodcastsContext } from '../../context';
+import './podcastEpisodeList.css';
 
 const columns: TableColumns[] = [
     { name: 'Title', align: 'left' },
@@ -28,9 +28,7 @@ export const PodcastEpisodeList = () => {
     const { podcastId } = useParams()
     const { onLoad } = useContext(PodcastsContext)
 
-    const episodesLocal = localStorage.getItem('podcastEpisodes')
-    const dataLocal = episodesLocal && JSON.parse(episodesLocal)
-    const episodes = dataLocal && dataLocal[podcastId!]
+    const { episodes, dataLocal } = getLocalPodcastEpisodes(podcastId)
 
     const [episodeList, setEpisodeList] = useState<Episode[]>(episodes?.data || [])
 
@@ -52,8 +50,9 @@ export const PodcastEpisodeList = () => {
             if (!results) {
                 throw Error('The field named "results" does not exist.')
             }
+            const podcastEpisode = results.filter(episode => episode.wrapperType === "podcastEpisode")
+            setEpisodeList(podcastEpisode)
 
-            setEpisodeList(results)
             const date = new Date()
 
             localStorage.setItem(
@@ -61,7 +60,7 @@ export const PodcastEpisodeList = () => {
                 JSON.stringify({
                     ...dataLocal,
                     [`${podcastId}`]: {
-                        data: results,
+                        data: podcastEpisode,
                         updateAt: date.getTime(),
                     },
                 })
