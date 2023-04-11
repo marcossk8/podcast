@@ -1,6 +1,6 @@
 import { TableCell, TableRow, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import { converMsecInHrMinSec } from '../../../utils';
+import { convertMsecInHrMinSec } from '../../../utils';
 import moment from 'moment';
 
 interface Props {
@@ -29,7 +29,7 @@ export const PodcastEpisodeTableBody = ({
                 </NavLink>
             </TableCell>
             <TableCell>{moment(releaseDate).format('DD/MM/YYYY')}</TableCell>
-            <TableCell align="right">{converMsecInHrMinSec(trackTimeMillis)}</TableCell>
+            <TableCell align="right">{convertMsecInHrMinSec(trackTimeMillis)}</TableCell>
         </TableRow>
     )
 }
