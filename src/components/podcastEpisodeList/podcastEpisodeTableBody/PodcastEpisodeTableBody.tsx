@@ -4,7 +4,7 @@ import { convertMsecInHrMinSec } from '../../../utils';
 import moment from 'moment';
 
 interface Props {
-    podcastId: string | undefined;
+    podcastId?: string;
     trackId: number;
     trackName: string;
     releaseDate: Date;

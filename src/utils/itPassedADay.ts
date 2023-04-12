@@ -1,4 +1,4 @@
-export const itPassedADay = (time:string | null | undefined) => {
+export const itPassedADay = (time: string | null) => {
     if(!time) return true;
 
     const date = new Date();

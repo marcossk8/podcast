@@ -8,7 +8,7 @@ import { Episode } from '../../interfaces/episodes';
 export const PodcastDetailEpisode = () => {
     const { podcastId, episodeId } = useParams();
     const { episodes } = getLocalPodcastEpisodes(podcastId)
-    const data:Episode[] = episodes.data
+    const data:Episode[] = episodes?.data || []
 
     const episodeLocal = data.find(episode => `${episode.trackId}` === episodeId)
 

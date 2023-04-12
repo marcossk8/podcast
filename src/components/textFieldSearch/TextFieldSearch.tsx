@@ -12,7 +12,7 @@ interface Props {
     placeholder?: string;
     name: string;
     icon: boolean;
-    size: 'small' | 'medium' | undefined;
+    size?: 'small' | 'medium';
     id?: string;
     sx?: SxProps<Theme>
 }

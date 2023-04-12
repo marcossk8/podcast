@@ -6,12 +6,12 @@ import { PodcastsContext } from '../../context';
 import './podcastCardDetail.css';
 
 interface Props {
-    podcastId: string | undefined;
+    podcastId?: string;
 }
 
 export const PodcastCardDetail = ({ podcastId }: Props) => {
     const { podcastsList } = useContext(PodcastsContext)
-    const podcastDetail = podcastsList.find(
+    const podcastDetail = podcastsList?.find(
         (podcast) => podcast.id.attributes['im:id'] === podcastId
     )
 
