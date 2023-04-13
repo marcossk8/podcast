@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Podcast App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Podcast website with three main pages programmed with React and Typescript.
+- The first page is the home page (`/`), which displays a list of podcasts showing the image, name and author. This page could also include a search bar to allow users to find specific podcasts more easily.
+- The second page is the detail page for a specific podcast (`/podcast/:podcastId`), which would display the podcast's image, name, author, and description. It would also include a list of episodes for that podcast, with each episode's title, date, and audio duration.
+- Finally, the third page is the detail page for a specific episode (`podcast/:podcastId/episode/:episodeId`), which would include all the information from the previous page (the podcast image, name, author, and description, as well as the list of episodes). Additionally, it would provide details for the specific episode, including its title, description, and audio.
+## How to use
 
-## Available Scripts
+🔵 [Live Demo]()
 
-In the project directory, you can run:
+Clone this repository and navigate to podcast-app folder, install packages using `yarn install` and execute project using `yarn start`
 
-### `npm start`
+```
+git clone https://github.com/marcossk8/podcast.git
+cd podcast-app
+yarn install
+yarn start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Then open http://localhost:3000/ to see your app.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies
 
-### `npm test`
+- React
+- TypeScript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Libraries
 
-### `npm run build`
+- React Router Dom
+- MUI
+- MUI Icons
+- Jest
+- React Library Testing
+- Axios
+- Moment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- List of the 100 most popular podcasts:
+https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Detail of a podcast:
+https://itunes.apple.com/lookup?id=934552872&media=podcast
+&entity=podcastEpisode&limit=20
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Author:
+- Marcos Almendros | [LinkedIn](https://www.linkedin.com/in/marcos-almendros-225b75183/) | [Email](mailto:marcosdalmendros@gmail.com)
