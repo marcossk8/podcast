@@ -14,7 +14,13 @@ export const PodcastCardMedia = ({ images, name, className }: Props) => {
     
     return (
         <div className="container-card-media">
-            <CardMedia className={`card-media-img ${className}`} image={image} title={name} />
+            <CardMedia 
+                component="img"
+                alt={name}
+                className={`card-media-img ${className}`}
+                image={image}
+                sx={{ width: 120, height: 120 }}
+            />
         </div>
     )
 }

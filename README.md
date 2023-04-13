@@ -43,5 +43,9 @@ https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json
 https://itunes.apple.com/lookup?id=934552872&media=podcast
 &entity=podcastEpisode&limit=20
 
+### License:
+
+This project is licensed under the terms of the GPL license.
+
 ### Author:
 - Marcos Almendros | [LinkedIn](https://www.linkedin.com/in/marcos-almendros-225b75183/) | [Email](mailto:marcosdalmendros@gmail.com)
