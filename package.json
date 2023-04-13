@@ -24,7 +24,7 @@
     "build": "yarn clean && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "clean": "rimraf dist/"
+    "clean": "rimraf docs/"
   },
   "jest": {
     "transformIgnorePatterns": [

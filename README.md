@@ -40,8 +40,7 @@ Then open http://localhost:3000/ to see your app.
 https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json
 
 - Detail of a podcast:
-https://itunes.apple.com/lookup?id=934552872&media=podcast
-&entity=podcastEpisode&limit=20
+https://itunes.apple.com/lookup?id=934552872&media=podcast&entity=podcastEpisode&limit=20
 
 ### License:
 
