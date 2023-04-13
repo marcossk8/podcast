@@ -6,8 +6,9 @@ Podcast website with three main pages programmed with React and Typescript.
 - Finally, the third page is the detail page for a specific episode (`podcast/:podcastId/episode/:episodeId`), which would include all the information from the previous page (the podcast image, name, author, and description, as well as the list of episodes). Additionally, it would provide details for the specific episode, including its title, description, and audio.
 ## How to use
 
-🔵 [Live Demo]()
+🔵 [Live Demo](https://gleaming-tanuki-24ed49.netlify.app/)
 
+- Development
 Clone this repository and navigate to podcast-app folder, install packages using `yarn install` and execute project using `yarn start`
 
 ```
@@ -18,6 +19,17 @@ yarn start
 ```
 
 Then open http://localhost:3000/ to see your app.
+
+- Production
+Clone this repository and navigate to podcast-app folder
+
+```
+npm install -g serve
+git clone https://github.com/marcossk8/podcast.git
+cd podcast-app
+serve -s build
+```
+Then open on your port :8000 to see your application.
 
 ## Technologies
 
