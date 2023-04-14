@@ -27,6 +27,8 @@ Clone this repository and navigate to podcast-app folder
 npm install -g serve
 git clone https://github.com/marcossk8/podcast.git
 cd podcast-app
+yarn install
+yarn build
 serve -s build
 ```
 Then open on your port :8000 to see your application.
