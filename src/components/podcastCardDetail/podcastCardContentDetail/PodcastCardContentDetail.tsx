@@ -1,5 +1,4 @@
 import { CardContent, Typography } from '@mui/material';
-import './podcastCardContentDetail.css';
 
 interface Props {
     name: string;
@@ -14,31 +13,27 @@ export const PodcastCardContentDetail = ({
 }: Props) => {
     return (
         <CardContent>
-            <Typography variant="h6" fontWeight={700} fontSize={16}>
-                {name}
-            </Typography>
+            <Typography variant="subtitle1">{name}</Typography>
             <Typography
-                fontSize={14}
-                fontStyle="italic"
                 mb={4}
-                className="card-detail-color-descriptions"
+                sx={[
+                    (theme) => ({
+                        ...theme.description,
+                    }),
+                ]}
             >
                 by {author}
             </Typography>
             <div>
-                <Typography
-                    variant="caption"
-                    fontSize={14}
-                    fontWeight={700}
-                    className="card-detail-color-titles"
-                >
+                <Typography variant="subtitle1" fontSize={14}>
                     Description:
                 </Typography>
                 <Typography
-                    variant="body1"
-                    fontSize={14}
-                    fontStyle="italic"
-                    className="card-detail-color-descriptions"
+                    sx={[
+                        (theme) => ({
+                            ...theme.description,
+                        }),
+                    ]}
                 >
                     {description}
                 </Typography>

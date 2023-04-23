@@ -1,48 +1,11 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { PodcastsContext } from '../../context';
 import { MainLayout } from '../../components/layouts';
-import { itunesAppleApi } from '../../api';
-import { getLocalPodcastList, itPassedADay } from '../../utils';
-import { PodcastsResponse } from '../../interfaces';
 import { FiltersHeader, PodcastCard, ResultsNotFound } from '../../components';
 import { Box } from '@mui/material';
 
 export const PodcastList = () => {
-    const { podcastsList, isLoading, getPodcasts } = useContext(PodcastsContext)
-
-    useEffect(() => {
-        const podcastsUpdateAt = localStorage.getItem('podcastsUpdateAt')
-
-        if (itPassedADay(podcastsUpdateAt)) {
-            getTopPodcasts()
-        } else {
-            getPodcasts(getLocalPodcastList())
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const getTopPodcasts = async () => {
-        try {
-            const { data } = await itunesAppleApi.get<PodcastsResponse>(
-                '/us/rss/toppodcasts/limit=100/genre=1310/json'
-            )
-
-            const entry = data?.feed?.entry
-            if (!entry) {
-                throw Error('The field named "entry" does not exist.')
-            }
-
-            getPodcasts(entry)
-            const date = new Date()
-            localStorage.setItem(
-                'podcastsUpdateAt',
-                JSON.stringify(date.getTime())
-            )
-            localStorage.setItem('podcastList', JSON.stringify(entry))
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    const { podcastsList, isLoading } = useContext(PodcastsContext)
 
     return (
         <MainLayout>
@@ -72,7 +35,7 @@ export const PodcastList = () => {
                 </Box>
             ) : (
                 <>
-                    {!isLoading && <ResultsNotFound />}
+                    {!isLoading && <ResultsNotFound title={"No results found."} />}
                 </>
             )}
         </MainLayout>

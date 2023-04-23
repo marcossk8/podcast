@@ -6,8 +6,8 @@ interface Props {
 
 export const TitleTableHead = ({ text }: Props) => {
     return (
-        <Paper className="container-header-number-episodes">
-            <Typography variant="h4" fontWeight={700} fontSize={18}>
+        <Paper sx={{ padding: 2, marginBottom: 2 }}>
+            <Typography variant="h3">
                 {text}
             </Typography>
         </Paper>

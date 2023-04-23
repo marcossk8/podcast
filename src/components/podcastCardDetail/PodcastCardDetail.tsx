@@ -3,7 +3,7 @@ import { Card } from '@mui/material';
 import { PodcastCardMedia } from '../podcastCard';
 import { PodcastCardContentDetail } from './';
 import { PodcastsContext } from '../../context';
-import './podcastCardDetail.css';
+import { ResultsNotFound } from '../';
 
 interface Props {
     podcastId?: string;
@@ -11,11 +11,12 @@ interface Props {
 
 export const PodcastCardDetail = ({ podcastId }: Props) => {
     const { podcastsList } = useContext(PodcastsContext)
+   
     const podcastDetail = podcastsList?.find(
         (podcast) => podcast.id.attributes['im:id'] === podcastId
     )
 
-    if (!podcastDetail) return <span>Error</span>
+    if (!podcastDetail) return <ResultsNotFound showIcon={false} title={"The podcast id number is incorrect."} />
 
     return (
         <Card
@@ -35,7 +36,7 @@ export const PodcastCardDetail = ({ podcastId }: Props) => {
             <PodcastCardMedia
                 images={podcastDetail['im:image']}
                 name={podcastDetail['im:name'].label}
-                className="card-media-img-detail"
+                sx={{ borderRadius: '4px' }}
             />
             <PodcastCardContentDetail
                 name={podcastDetail['im:name'].label}

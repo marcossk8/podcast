@@ -23,13 +23,12 @@ export const PodcastEpisodeTableBody = ({
             <TableCell>
                 <NavLink
                     to={`/podcast/${podcastId}/episode/${trackId}`}
-                    className="link-episode-text"
                 >
-                    <Typography color="primary">{trackName}</Typography>
+                    <Typography color={"primary"}>{trackName}</Typography>
                 </NavLink>
             </TableCell>
             <TableCell>{moment(releaseDate).format('DD/MM/YYYY')}</TableCell>
-            <TableCell align="right">{convertMsecInHrMinSec(trackTimeMillis)}</TableCell>
+            <TableCell align={"right"}>{convertMsecInHrMinSec(trackTimeMillis)}</TableCell>
         </TableRow>
     )
 }

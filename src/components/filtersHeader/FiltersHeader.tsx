@@ -1,15 +1,14 @@
 import { useContext } from 'react';
-import { Chip } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import { TextFieldSearch } from '../textFieldSearch/TextFieldSearch';
 import { PodcastsContext } from '../../context';
-import './filtersHeader.css';
 
 export const FiltersHeader = () => {
     const { podcastsList } = useContext(PodcastsContext)
 
     return (
-        <div className="container-search">
-            <Chip label={`${podcastsList.length} results`} color="primary" className="chip-results"/>
+        <Box display={"flex"} alignItems={"center"} justifyContent={"flex-end"}>
+            <Chip label={`${podcastsList.length} results`} color="primary" sx={{ marginRight: 2 }} />
 
             <TextFieldSearch
                 placeholder="Filter podcast..."
@@ -18,6 +17,6 @@ export const FiltersHeader = () => {
                 size="small"
                 icon
             />
-        </div>
+        </Box>
     )
 }

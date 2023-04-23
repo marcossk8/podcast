@@ -1,5 +1,4 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import './podcastCardEpisode.css';
 
 interface Props {
     trackName?: string;
@@ -30,18 +29,22 @@ export const PodcastCardEpisode = ({
         >
             <Card raised elevation={2}>
                 <CardContent>
-                    <Typography variant="h3" fontWeight={700} fontSize={22}>
+                    <Typography variant="h3">
                         {trackName}
                     </Typography>
                     <Typography
-                        variant="body1"
-                        fontSize={14}
-                        fontStyle="italic"
-                        className="card-episode-descriptions"
+                        sx={[
+                            { "> p:nth-child(1)": { marginBottom: 0, marginTop: 1 } },
+                            (theme) => ({
+                                ...theme.description,
+                            }),
+                        ]}
                         dangerouslySetInnerHTML={descriptionParseHtml}
                     />
 
-                    <audio src={episodeUrl} controls className="audio-episode"></audio>
+                    <Box mt={3}>
+                        <audio src={episodeUrl} controls style={{ width: '100%' }}></audio>
+                    </Box>
                 </CardContent>
             </Card>
         </Box>

@@ -1,26 +1,32 @@
-import { CardMedia } from '@mui/material';
+import { Box, CardMedia, SxProps, Theme } from '@mui/material';
 import { IMImage } from '../../../interfaces';
 import { imageNotFound } from '../../../utils';
-import './podcastCardMedia.css';
 
 interface Props {
     images: IMImage[];
     name: string;
-    className?: string;
+    sx?: SxProps<Theme>
 }
 
-export const PodcastCardMedia = ({ images, name, className }: Props) => {
+export const PodcastCardMedia = ({ images, name, sx }: Props) => {
     const image = images?.length ? images[images.length - 1].label : imageNotFound
     
     return (
-        <div className="container-card-media">
-            <CardMedia 
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 1,
+                paddingTop: 2,
+            }}
+        >
+            <CardMedia
                 component="img"
                 alt={name}
-                className={`card-media-img ${className}`}
                 image={image}
-                sx={{ width: 120, height: 120 }}
+                sx={{ width: 120, height: 120, borderRadius: '50%', ...sx }}
             />
-        </div>
+        </Box>
     )
 }

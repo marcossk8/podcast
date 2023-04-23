@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavBar, ScrollToTop } from '../../';
-import './mainLayout.css';
+import { Box } from '@mui/material';
 
 interface Props {
     children: JSX.Element | JSX.Element[];
@@ -11,9 +11,9 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
         <>
             <ScrollToTop />
             <NavBar />
-            <div className="container-layout-children">
+            <Box p={3}>
                 {children}
-            </div>
+            </Box>
         </>
     )
 }

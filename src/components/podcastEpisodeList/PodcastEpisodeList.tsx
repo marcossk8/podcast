@@ -14,9 +14,8 @@ import {
 import { PodcastEpisodeTableBody, PodcastEpisodeTableHead } from './';
 import { TableColumns } from '../../interfaces';
 import { Episode, EpisodesResponse } from '../../interfaces/episodes';
-import { TitleTableHead } from '../';
+import { ResultsNotFound, TitleTableHead } from '../';
 import { PodcastsContext } from '../../context';
-import './podcastEpisodeList.css';
 
 const columns: TableColumns[] = [
     { name: 'Title', align: 'left' },
@@ -76,7 +75,7 @@ export const PodcastEpisodeList = () => {
         <Box
             sx={{
                 width: {
-                    xs: '100%',
+                    xs: 1,
                     sm: 600,
                     md: 800,
                 },
@@ -86,7 +85,7 @@ export const PodcastEpisodeList = () => {
                     md: 5,
                 },
             }}
-        >   
+        >
             <TitleTableHead text={`Episodes: ${episodeList.length}`} />
             <TableContainer component={Paper}>
                 <Table size="small">
@@ -102,16 +101,20 @@ export const PodcastEpisodeList = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {episodeList.map((episode) => (
-                            <PodcastEpisodeTableBody 
-                                key={episode.trackId}
-                                podcastId={podcastId}
-                                trackId={episode.trackId}
-                                trackName={episode.trackName}
-                                releaseDate={episode.releaseDate}
-                                trackTimeMillis={episode.trackTimeMillis}
-                            />
-                        ))}
+                        {episodeList.length > 0 ? (
+                            episodeList.map((episode) => (
+                                <PodcastEpisodeTableBody
+                                    key={episode.trackId}
+                                    podcastId={podcastId}
+                                    trackId={episode.trackId}
+                                    trackName={episode.trackName}
+                                    releaseDate={episode.releaseDate}
+                                    trackTimeMillis={episode.trackTimeMillis}
+                                />
+                            ))
+                        ) : (
+                            <ResultsNotFound showIcon={false} title={"No results found."} />
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>
